@@ -9,7 +9,7 @@ import {
 	isDirectEditing,
 	isMobileInterfaceAvailable
 } from './helpers/mobile'
-import { getWopiUrl } from './helpers/url'
+import { getWopiUrl, getSearchParam } from './helpers/url'
 
 const PostMessages = new PostMessageService({
 	parent: window.parent,
@@ -367,7 +367,7 @@ const documentsMain = {
 		var fileId
 
 		// Does anything indicate that we need to autostart a session?
-		fileId = window.getURLParameter('fileId').replace(/^\W*/, '')
+		fileId = (getSearchParam('fileId') || '').replace(/^\W*/, '')
 
 		if (fileId && Number.isInteger(Number(fileId)) && $('#nickname').length === 0) {
 			documentsMain.isEditorMode = true
